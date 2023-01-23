@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>East Coast Guide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
@@ -16,11 +17,11 @@
         <nav>
             <div class="nav-wrapper grey darken-3">
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;East Coast Guide</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo"><img src="https://iili.io/HlcoKhv.png" alt="logo"></a></li>
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'locations' %}">Locations</a></li>
+                    <li><a href="{% url 'home' %}">Locations</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
@@ -35,8 +36,8 @@
         {% block content %}
         {% endblock %}
     </main>
-  	<footer class="page-footer grey darken-3">
+  	<!-- <footer class="page-footer grey darken-3">
        <div class="right">All Rights Reserved, &copy; 2023 East Coast Guide &nbsp;</div>
-    </footer>
+    </footer> -->
 </body>
 </html>
