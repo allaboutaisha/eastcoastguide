@@ -16,11 +16,11 @@
         <nav>
             <div class="nav-wrapper grey darken-3">
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;East Coast Guide</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo"><img src="https://iili.io/HlcoKhv.png" alt="logo"></a></li>
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'locations' %}">Locations</a></li>
+                    <li><a href="{% url 'home' %}">Locations</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
