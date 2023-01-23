@@ -9,8 +9,8 @@ class Comment(models.Model):
     comment = models.CharField(max_length=100)
     rating = models.CharField(
         max_length=1,
-        choices=NUMS,
-        default=NUMS[0][0]
+        # choices=NUMS,
+        # default=NUMS[0][0]
     )
 
 class User(models.Model):
