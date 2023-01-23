@@ -2,12 +2,24 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-# Create your models here.
+NUMS = (
+    ('1'),
+    ('2'),
+    ('3'),
+    ('4'),
+    ('5'),
+)
+
+# Create your models here
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.CharField(max_length=100)
     comment = models.CharField(max_length=100)
-    rating = models.CharField(max_length=100)
+    rating = models.CharField(
+        max_length=1,
+        choices=NUMS,
+        default=NUMS[0][0]
+    )
 
 class Restaurant(models.Model):
     location = models.CharField(max_length=100)
