@@ -11,7 +11,9 @@ class Comment(models.Model):
         max_length=1,
         choices=NUMS,
         default=NUMS[0][0]
-    )class User(models.Model):
+    )
+
+class User(models.Model):
     _id = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     avatar = models.CharField(max_length=100)
