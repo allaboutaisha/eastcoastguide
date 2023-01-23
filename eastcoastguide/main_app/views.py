@@ -39,7 +39,7 @@ class RestaurantsMAIndex(ListView):
     def get_queryset(self):
         return self.model.objects.filter(location='Massachusetts')
 
-
+#comment
 class RestaurantCreate(CreateView):
     model = Restaurant
     fields = '__all__'
