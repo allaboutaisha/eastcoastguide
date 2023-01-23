@@ -40,6 +40,7 @@ class RestaurantsMAIndex(ListView):
         return self.model.objects.filter(location='Massachusetts')
 
 #comment
+#another
 class RestaurantCreate(CreateView):
     model = Restaurant
     fields = '__all__'
