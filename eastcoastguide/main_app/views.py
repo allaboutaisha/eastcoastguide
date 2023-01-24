@@ -1,7 +1,7 @@
 from django.contrib.auth import login
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from .models import Restaurant, Comment, User
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,19 +39,27 @@ class RestaurantsMAIndex(ListView):
     def get_queryset(self):
         return self.model.objects.filter(location='Massachusetts')
 
-#comment
-#another
+
 class RestaurantCreate(CreateView):
     model = Restaurant
-    fields = '__all__'
+    fields = ['name', 'Location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+    success_url = '/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+class RestaurantUpdate(UpdateView):
+    model = Restaurant
+    fields = ['name', 'Location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+
+class RestaurantDelete(DeleteView):
+    model = Restaurant
+    success_url = '/'
+    
 class CommentCreate(CreateView):
     model = Comment
-    fields = '__all__'
+    fields = ['comment', 'rating']
 
 #for the detail class in order to get it to work, the comments model will need to have the foreign key! I can always adjust accordingly once the models are created if there are any bugs :)
 class RestaurantDetail(DetailView):
