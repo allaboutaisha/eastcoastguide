@@ -14,7 +14,7 @@ NUMS = (
 # Create your models here
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.CharField(max_length=100)
+    date = models.DateField(max_length=100)
     comment = models.CharField(max_length=100)
     rating = models.CharField(
         max_length=1,
@@ -23,6 +23,7 @@ class Comment(models.Model):
     )
 
 class Restaurant(models.Model):
+    name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     website = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
