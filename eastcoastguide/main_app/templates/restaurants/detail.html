@@ -16,8 +16,8 @@
         <p>Hours: {{ restaurant.hours }}</p>
       </div>
 <div class="card-action">
-    <a href="{% url 'restaurants_update' restaurant.id %}" class="blue-text">Edit</a>
-    <a href="{% url 'restaurants_delete' restaurant.id %}"class="blue-text">Delete</a>
+    <a href="{% url 'restaurants_update' restaurant.id %}" class="grey-text  text-darken-2">Edit</a>
+    <a href="{% url 'restaurants_delete' restaurant.id %}"class="red-text  text-accent-4">Delete</a>
   </div>
 
 {% endblock %}
