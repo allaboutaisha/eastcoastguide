@@ -11,6 +11,13 @@ NUMS = (
     ('5', '5'),
 )
 
+PRICE = (
+    ('$', '$'),
+    ('$$', '$$'),
+    ('$$$', '$$$'),
+    ('$$$$', '$$$$'),
+)
+
 # Create your models here
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -27,7 +34,10 @@ class Restaurant(models.Model):
     location = models.CharField(max_length=100)
     website = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    price_range = models.CharField(max_length=100)
+    price_range = models.CharField(
+        max_length=5,
+        choices=PRICE,
+        default=PRICE[0][0][0])
     type = models.CharField(max_length=100)
     hours = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
