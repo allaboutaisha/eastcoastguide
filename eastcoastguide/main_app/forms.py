@@ -6,9 +6,4 @@ class CommentForm(ModelForm):
     model = Comment
     fields = ['user', 'date', 'comment', 'rating']
 
-class ResturantForm(ModelForm):
-  class Meta:
-    model = Restaurant
-    fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
-
 
