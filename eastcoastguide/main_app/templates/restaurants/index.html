@@ -8,9 +8,10 @@
     <a href="{% url 'restaurant_create' %}" class="right"><i class="medium material-icons grey-text text-darken-2 ">add_circle</i></a>
   </div>
 </div>
-{% for restaurant in restaurants %}
+
+{% for restaurant in object_list %}
 <div class="row">
-  <a href="" class="grey-text text-darken-3">
+  <a href="{% url 'detail' restaurant.location restaurant.id %}" class="grey-text text-darken-3">
     <div class="col s4">
         <div class="card">
           <div class="card-image">
