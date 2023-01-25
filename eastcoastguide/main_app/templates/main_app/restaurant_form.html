@@ -20,10 +20,9 @@
 </form>
 
 <script>
-  const locationEl = document.getElementById('location');
-  M.Dropdown.init(locationEl, {
-    
-  })
-
+  const locationEl = document.getElementById('id_location');
+  M.FormSelect.init(locationEl);
+  const priceRangeEl = document.getElementById('id_price_range');
+  M.FormSelect.init(priceRangeEl);
 </script>
 {% endblock %}
