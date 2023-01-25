@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Restaurant, Comment, User
+from .models import Restaurant, Comment, User, LOCATIONS
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class SignUpView(CreateView):
@@ -53,6 +53,7 @@ class RestaurantsMAIndex(ListView):
 class RestaurantCreate(CreateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+    success_url = '/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
