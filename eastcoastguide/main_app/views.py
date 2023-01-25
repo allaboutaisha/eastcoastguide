@@ -43,7 +43,6 @@ class RestaurantsMAIndex(ListView):
 class RestaurantCreate(CreateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
-    success_url = '/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -51,7 +50,7 @@ class RestaurantCreate(CreateView):
     
 class RestaurantUpdate(UpdateView):
     model = Restaurant
-    fields = ['name', 'Location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+    fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
 
 class RestaurantDelete(DeleteView):
     model = Restaurant
