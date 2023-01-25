@@ -27,13 +27,13 @@ LOCATIONS = (
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(max_length=100)
-    comment = models.CharField(max_length=100)
+    comment = models.TextField(max_length=250)
     rating = models.CharField(
         max_length=1,
         choices=NUMS,
         default=NUMS[0][0]
     )
-
+    
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(
@@ -51,5 +51,8 @@ class Restaurant(models.Model):
         max_length=100)
     hours = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
-    comment = models.ManyToManyField(Comment) # We might not need this
+    comment = models.ManyToManyField(Comment, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+    
