@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Restaurant, Comment, User
+from django.shortcuts import render 
+from .models import Restaurant, Comment 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class SignUpView(CreateView):
@@ -67,7 +68,5 @@ class RestaurantDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        restaurant = self.get_object()
-        context['comments'] = restaurant.comment.all()
         return context
-    
+
