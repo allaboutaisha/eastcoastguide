@@ -28,7 +28,7 @@ class About(TemplateView):
 class RestaurantsIndex(ListView):
     model = Restaurant
     template_name = 'restaurants/index.html'
-
+    
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
         return qs.filter(location=self.kwargs['location'])
