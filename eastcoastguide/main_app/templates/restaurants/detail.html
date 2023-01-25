@@ -15,6 +15,9 @@
         <p>Type of Cuisine: {{ restaurant.type }}</p>
         <p>Hours: {{ restaurant.hours }}</p>
       </div>
-
-
+      <div class="card-action">
+        <a href="{% url 'restaurant_update' restaurant.location restaurant.id %}" class="grey-text  text-darken-2">Edit</a>
+        <a href="{% url 'restaurant_delete' restaurant.location restaurant.id %}"class="red-text  text-accent-4">Delete</a>
+      </div>
+    
 {% endblock %}
