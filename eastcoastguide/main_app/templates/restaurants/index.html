@@ -8,12 +8,11 @@
     <a href="{% url 'restaurants_create' %}" class="right"><i class="medium material-icons grey-text text-darken-2 ">add_circle</i></a>
   </div>
 </div>
+{% for restaurant in restaurants %}
 <div class="row">
-  <a href="#">
+  <a href="{% url 'detail restaurant.id %}" class="grey-text text-darken-3">
     <div class="col s4">
         <div class="card">
-          <a href="" class="grey-text -text-darken-3"></a>
-          
           <div class="card-image">
                 <img src="https://iili.io/HlkRM2j.png">
                 <span class="card-title grey darken-2">{{restaurant.name}}</span>
@@ -26,38 +25,6 @@
         </div>
     </div>
   </a>
-  
-  <a href="#">
-          <div class="col s4">
-        <div class="card">
-            <div class="card-image">
-<img src="https://iili.io/HlkRz1s.png" width="100px" height="auto">
-<span class="card-title grey darken-2" >Sake Steakhouse</span>
 </div>
-<div class="card-content grey-text text-darken-3">
-<p>Location: Mansfield, MA</p>
-<p>Cuisine: Japanese, Sushi, Asian</p>
-<p>Price Range: $$ - $$$</p>
-            </div>
-        </div>
-    </div>
-  </a>
-
-  <a href="#">
-          <div class="col s4">
-        <div class="card">
-            <div class="card-image">
-<img src="https://iili.io/HlkRYIS.png" width="100px" height="auto">
-<span class="card-title grey darken-2" >Bliss Brothers Dairy</span>
-</div>
-<div class="card-content grey-text text-darken-3">
-<p>Location: Attleboro, MA</p>
-<p>Cuisine: DessertAmericanVegetarian Friendly</p>
-<p>Price Range: $$ - $$$</p>
-            </div>
-        </div>
-    </div>
-  </a>
-</div>
-
+{% endfor %}
 {% endblock %}
