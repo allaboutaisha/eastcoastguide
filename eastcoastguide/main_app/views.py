@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Restaurant, Comment, User
+from .models import Restaurant, Comment, User, LOCATIONS
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class SignUpView(CreateView):
@@ -32,12 +32,22 @@ class RestaurantsNYIndex(ListView):
     def get_queryset(self):
         return self.model.objects.filter(location='New York')
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = 'New York'
+        return context
+    
 class RestaurantsMAIndex(ListView):
     model = Restaurant
     template_name = 'restaurants/index.html'
     
     def get_queryset(self):
         return self.model.objects.filter(location='Massachusetts')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = 'Massachusetts'
+        return context
 
 
 class RestaurantCreate(CreateView):
@@ -51,7 +61,7 @@ class RestaurantCreate(CreateView):
     
 class RestaurantUpdate(UpdateView):
     model = Restaurant
-    fields = ['name', 'Location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+    fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
 
 class RestaurantDelete(DeleteView):
     model = Restaurant
