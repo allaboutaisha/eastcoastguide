@@ -38,7 +38,6 @@ class RestaurantsIndex(ListView):
         context['location'] = self.kwargs['location']
         return context
 
-
 class RestaurantCreate(CreateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
