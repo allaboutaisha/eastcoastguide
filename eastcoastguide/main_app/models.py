@@ -17,6 +17,11 @@ PRICE = (
     ('$$$', '$$$'),
     ('$$$$', '$$$$'),
 )
+     
+LOCATIONS = (
+    ('NY', 'NY'),
+    ('MA', 'MA'),
+)
 
 # Create your models here
 class Comment(models.Model):
@@ -31,13 +36,16 @@ class Comment(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+    location = models.CharField(
+        max_length=2,
+        choices=LOCATIONS,
+        default=[0][0])
     website = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     price_range = models.CharField(
         max_length=5,
         choices=PRICE,
-        default=PRICE[0][0][0])
+        default=PRICE[0][0])
     type = models.CharField(max_length=100)
     hours = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
