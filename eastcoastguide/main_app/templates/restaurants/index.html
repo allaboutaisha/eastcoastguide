@@ -2,58 +2,29 @@
 {% block content %}
 
 
-<h1>Restaurants</h1>
-<div>
-  <a href="{% url 'restaurants_create' %}" class="right"><i class="medium material-icons grey-text text-darken-2 ">add_circle</i></a>
-</div>
 <div class="row">
-  <a href="#">
+  <div class="col s6"><h1>Restaurants</h1></div>
+  <div class="col s6">
+    <a href="{% url 'restaurants_create' %}" class="right"><i class="medium material-icons grey-text text-darken-2 ">add_circle</i></a>
+  </div>
+</div>
+{% for restaurant in restaurants %}
+<div class="row">
+  <a href="{% url 'detail' restaurant.id %}" class="grey-text text-darken-3">
     <div class="col s4">
         <div class="card">
-            <div class="card-image">
+          <div class="card-image">
                 <img src="https://iili.io/HlkRM2j.png">
-                <span class="card-title grey darken-2">Tempo</span>
+                <span class="card-title grey darken-2">restaurant name</span>
             </div>
             <div class="card-content grey-text text-darken-3">
-                <p>Location: Waltham, MA</p>
-                <p>Cuisine: Fusion</p>
-                <p>Price Range: $$ - $$$</p>
-            </div>
-        </div>
-    </div>
-  </a>
-  
-  <a href="#">
-          <div class="col s4">
-        <div class="card">
-            <div class="card-image">
-<img src="https://iili.io/HlkRz1s.png" width="100px" height="auto">
-<span class="card-title grey darken-2" >Sake Steakhouse</span>
-</div>
-<div class="card-content grey-text text-darken-3">
-<p>Location: Mansfield, MA</p>
-<p>Cuisine: Japanese, Sushi, Asian</p>
-<p>Price Range: $$ - $$$</p>
-            </div>
-        </div>
-    </div>
-  </a>
-
-  <a href="#">
-          <div class="col s4">
-        <div class="card">
-            <div class="card-image">
-<img src="https://iili.io/HlkRYIS.png" width="100px" height="auto">
-<span class="card-title grey darken-2" >Bliss Brothers Dairy</span>
-</div>
-<div class="card-content grey-text text-darken-3">
-<p>Location: Attleboro, MA</p>
-<p>Cuisine: DessertAmericanVegetarian Friendly</p>
-<p>Price Range: $$ - $$$</p>
+                <p>Location: {{restaurant.location}}</p>
+                <p>Cuisine Type: {{restaurant.type}}</p>
+                <p>Price Range: {{restaurant.price_range}}</p>
             </div>
         </div>
     </div>
   </a>
 </div>
-
+{% endfor %}
 {% endblock %}
