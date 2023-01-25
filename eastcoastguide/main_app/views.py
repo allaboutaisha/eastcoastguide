@@ -32,12 +32,22 @@ class RestaurantsNYIndex(ListView):
     def get_queryset(self):
         return self.model.objects.filter(location='New York')
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = 'New York'
+        return context
+    
 class RestaurantsMAIndex(ListView):
     model = Restaurant
     template_name = 'restaurants/index.html'
     
     def get_queryset(self):
         return self.model.objects.filter(location='Massachusetts')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = 'Massachusetts'
+        return context
 
 
 class RestaurantCreate(CreateView):
