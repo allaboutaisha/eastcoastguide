@@ -1,11 +1,11 @@
 from django.contrib.auth import login
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render 
 from .models import Restaurant, Comment 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse, reverse_lazy
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -51,10 +51,11 @@ class RestaurantCreate(CreateView):
 class RestaurantUpdate(UpdateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+    success_url = '/'
 
 class RestaurantDelete(DeleteView):
-    model = Restaurant
-    success_url = '/'
+    model = Restaurant 
+    sucess_url = '/'
     
 class CommentCreate(CreateView):
     model = Comment
