@@ -1,9 +1,8 @@
 from django.forms import ModelForm
-from .models import Comment, Restaurant
+from .models import Comment
 
 class CommentForm(ModelForm):
   class Meta:
     model = Comment
-    fields = ['user', 'date', 'comment', 'rating']
-
+    fields = ['user', 'comment', 'rating']
 
