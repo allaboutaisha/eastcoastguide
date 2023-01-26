@@ -85,13 +85,18 @@ class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return reverse('restaurants', args=[self.object.location])
 
     
-class CommentCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class CommentCreate(CreateView):
     model = Comment
-    fields = ['user', 'comment', 'rating', 'date'] 
-    form_class = CommentForm
+    fields = ['comment', 'rating'] 
+    template_name = 'restaurants/detail.html'
+    
+    def get_success_url(self):
+        return reverse('restaurant_detail', args=[str(self.object.restaurant_id)])
+
 
     def form_valid(self, form):
         form.instance.restaurant_id = self.kwargs['pk']
+        form.instance.user = self.request.user
         return super().form_valid(form)
     
 

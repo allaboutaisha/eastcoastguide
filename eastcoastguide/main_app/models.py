@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -47,7 +48,7 @@ class Restaurant(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(max_length=100)
+    date = models.DateField(default=date.today)
     comment = models.TextField(max_length=250)
     rating = models.CharField(
         max_length=1,
