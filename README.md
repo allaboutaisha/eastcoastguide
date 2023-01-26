@@ -3,7 +3,7 @@
 # East Coast Eats
 [app link]
 
-Four developers came together with a shared passion for food and travel, along with a desire to share eats from the US regions they grew up. They pooled their talents and expertise in programming to create East Coast Eats. With the launch of the app, users can create and review listings in a directory while updating and deleting the listing they have created. The developers have the satisfaction of knowing they have made their favorite places to eat more accessible for others to enjoy.
+Four developers came together with a shared passion for food and travel, along with a desire to share eats from the US regions they grew up. They pooled their talents and expertise in programming to create East Coast Eats. With the launch of the app, users can create and review listings in a directory while updating and deleting the listing they have created. The developers have the satisfaction of knowing they have made thier favorite places to eat more accessible for others to enjoy.
 
 ## The users will be able to:
 
