@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render 
-from .models import Restaurant, Comment 
+from .models import Restaurant, Comment
+from .forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
@@ -84,15 +85,32 @@ class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return reverse('restaurants', args=[self.object.location])
 
     
-class CommentCreate(LoginRequiredMixin, UserPassesTestMixin ,CreateView):
+class CommentCreate(CreateView):
     model = Comment
-    fields = ['comment', 'rating']
+    fields = ['comment', 'rating'] 
+    template_name = 'restaurants/detail.html'
+    
+    def get_success_url(self):
+        return reverse('restaurant_detail', args=[str(self.object.restaurant_id)])
+
+
+    def form_valid(self, form):
+        form.instance.restaurant_id = self.kwargs['pk']
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
 
 class RestaurantDetail(DetailView):
     model = Restaurant
     template_name = 'restaurants/detail.html'
-    context_object_name = 'restaurant'
+    comment_form = CommentForm()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'] = CommentForm()
         return context
+    
+    # def form_valid(self, form):
+    # form.instance.user = self.request.user
+    # form.instance.restaurant = Restaurant
+
