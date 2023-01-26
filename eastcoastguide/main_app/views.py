@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render 
 from .models import Restaurant, Comment 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 
 class SignUpView(CreateView):
@@ -20,12 +21,6 @@ class SignUpView(CreateView):
 
     def form_invalid(self, form):
         return render(self.request, self.template_name, {'form': form, 'error_message': 'Invalid sign up - try again'})
-
-# def user_is_restaurant_creator(user):
-#     def test_func(self):
-#         restaurant = self.get_object()
-#         return user.is_authenticated and user == restaurant.user
-#     return test_func
 
 class Home(TemplateView):
     template_name = 'home.html'
@@ -55,7 +50,7 @@ class RestaurantCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class RestaurantUpdate(LoginRequiredMixin, UpdateView):
+class RestaurantUpdate(LoginRequiredMixin, UserPassesTestMixin , UpdateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
 
@@ -63,14 +58,14 @@ class RestaurantUpdate(LoginRequiredMixin, UpdateView):
         return reverse('detail', args=[self.object.location, self.object.pk])
 
 
-class RestaurantDelete(LoginRequiredMixin, DeleteView):
+class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin ,DeleteView):
     model = Restaurant
 
     def get_success_url(self):
         return reverse('restaurants', args=[self.object.location])
 
     
-class CommentCreate(LoginRequiredMixin, CreateView):
+class CommentCreate(LoginRequiredMixin, UserPassesTestMixin ,CreateView):
     model = Comment
     fields = ['comment', 'rating']
 
