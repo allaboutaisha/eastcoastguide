@@ -113,4 +113,3 @@ class RestaurantDetail(DetailView):
     # def form_valid(self, form):
     # form.instance.user = self.request.user
     # form.instance.restaurant = Restaurant
-
