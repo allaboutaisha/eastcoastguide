@@ -1,5 +1,4 @@
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
@@ -22,11 +21,14 @@ class SignUpView(CreateView):
     def form_invalid(self, form):
         return render(self.request, self.template_name, {'form': form, 'error_message': 'Invalid sign up - try again'})
 
+
 class Home(TemplateView):
     template_name = 'home.html'
     
+
 class About(TemplateView):
     template_name = 'about.html'
+
 
 class RestaurantsIndex(ListView):
     model = Restaurant
@@ -41,6 +43,7 @@ class RestaurantsIndex(ListView):
         context['location'] = self.kwargs['location']
         return context
 
+
 class RestaurantCreate(LoginRequiredMixin, CreateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
@@ -50,6 +53,7 @@ class RestaurantCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+
 class RestaurantUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
@@ -63,7 +67,6 @@ class RestaurantUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('detail', args=[self.object.location, self.object.pk])
-
 
 
 class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
