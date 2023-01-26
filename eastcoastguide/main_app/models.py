@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -24,15 +25,6 @@ LOCATIONS = (
 )
 
 # Create your models here
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(max_length=100)
-    comment = models.TextField(max_length=250)
-    rating = models.CharField(
-        max_length=1,
-        choices=NUMS,
-        default=NUMS[0][0]
-    )
     
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
@@ -51,8 +43,19 @@ class Restaurant(models.Model):
         max_length=100)
     hours = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
-    comment = models.ManyToManyField(Comment, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(default=date.today)
+    comment = models.TextField(max_length=250)
+    rating = models.CharField(
+        max_length=1,
+        choices=NUMS,
+        default=NUMS[0][0]
+    )
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 
     
