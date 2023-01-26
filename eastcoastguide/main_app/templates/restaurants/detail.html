@@ -31,9 +31,9 @@
 <div class="row">
   <div class="col s6">
     <h2>Add a Comment</h2>
-    <form action="{% url 'comment_create' restaurant.id %" method="POST">
+    <form action="{% url 'comment_create' restaurant.id %}" method="POST">
       {% csrf_token %}
-      {{ comment_form.as_p }}
+      {{ form.as_p }}
       <input type="submit" class="btn" value="Add Comment">
     </form>
       <input type="hidden" name="restaurant" value="{{ restaurant.id }}" />

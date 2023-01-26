@@ -87,7 +87,8 @@ class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
 class CommentCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Comment
-    fields = ['comment', 'rating'] 
+    fields = ['user', 'comment', 'rating', 'date'] 
+    form_class = CommentForm
 
     def form_valid(self, form):
         form.instance.restaurant_id = self.kwargs['pk']
