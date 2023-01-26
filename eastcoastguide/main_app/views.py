@@ -2,7 +2,8 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Restaurant, Comment, User
+from django.shortcuts import render 
+from .models import Restaurant, Comment 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
@@ -45,7 +46,7 @@ class RestaurantsIndex(ListView):
 
 class RestaurantCreate(LoginRequiredMixin, CreateView):
     model = Restaurant
-    fields = '__all__'
+    fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
     success_url = '/'
 
     def form_valid(self, form):
