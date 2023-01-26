@@ -5,5 +5,3 @@ class CommentForm(ModelForm):
   class Meta:
     model = Comment
     fields = ['user', 'date', 'comment', 'rating']
-
-

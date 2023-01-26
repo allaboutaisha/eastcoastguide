@@ -2,8 +2,12 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
+<<<<<<< HEAD
 from django.shortcuts import render 
 from .models import Restaurant, Comment 
+=======
+from .models import Restaurant, Comment, User
+>>>>>>> 304d30c (changes to html files, views and forms)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
@@ -34,6 +38,7 @@ class RestaurantsIndex(ListView):
     model = Restaurant
     template_name = 'restaurants/index.html'
     
+<<<<<<< HEAD
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
         return qs.filter(location=self.kwargs['location'])
@@ -41,12 +46,32 @@ class RestaurantsIndex(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['location'] = self.kwargs['location']
+=======
+    def get_queryset(self):
+        return self.model.objects.filter(location='NY')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = 'NY'
+        return context
+    
+class RestaurantsMAIndex(ListView):
+    model = Restaurant
+    template_name = 'restaurants/index.html'
+    
+    def get_queryset(self):
+        return self.model.objects.filter(location='MA')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['location'] = 'MA'
+>>>>>>> 304d30c (changes to html files, views and forms)
         return context
 
 
 class RestaurantCreate(LoginRequiredMixin, CreateView):
     model = Restaurant
-    fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+    fields = '__all__'
     success_url = '/'
 
     def form_valid(self, form):
