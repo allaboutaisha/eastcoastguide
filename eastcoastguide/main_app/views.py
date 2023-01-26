@@ -1,10 +1,11 @@
 from django.contrib.auth import login
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render 
 from .models import Restaurant, Comment 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 
 class SignUpView(CreateView):
@@ -20,11 +21,14 @@ class SignUpView(CreateView):
     def form_invalid(self, form):
         return render(self.request, self.template_name, {'form': form, 'error_message': 'Invalid sign up - try again'})
 
+
 class Home(TemplateView):
     template_name = 'home.html'
     
+
 class About(TemplateView):
     template_name = 'about.html'
+
 
 class RestaurantsIndex(ListView):
     model = Restaurant
@@ -39,7 +43,8 @@ class RestaurantsIndex(ListView):
         context['location'] = self.kwargs['location']
         return context
 
-class RestaurantCreate(CreateView):
+
+class RestaurantCreate(LoginRequiredMixin, CreateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
     success_url = '/'
@@ -48,20 +53,41 @@ class RestaurantCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class RestaurantUpdate(UpdateView):
+
+class RestaurantUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
-    success_url = '/'
 
-class RestaurantDelete(DeleteView):
-    model = Restaurant 
-    sucess_url = '/'
+    def test_func(self):
+        restaurant = self.get_object()
+        return restaurant.user == self.request.user
+
+    def handle_no_permission(self):
+        return redirect(reverse('home'))
+
+    def get_success_url(self):
+        return reverse('detail', args=[self.object.location, self.object.pk])
+
+
+class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Restaurant
+    raise_exception = False
+
+    def test_func(self):
+        restaurant = self.get_object()
+        return restaurant.user == self.request.user
+
+    def handle_no_permission(self):
+        return redirect(reverse('home'))
     
-class CommentCreate(CreateView):
+    def get_success_url(self):
+        return reverse('restaurants', args=[self.object.location])
+
+    
+class CommentCreate(LoginRequiredMixin, UserPassesTestMixin ,CreateView):
     model = Comment
     fields = ['comment', 'rating']
 
-#for the detail class in order to get it to work, the comments model will need to have the foreign key! I can always adjust accordingly once the models are created if there are any bugs :)
 class RestaurantDetail(DetailView):
     model = Restaurant
     template_name = 'restaurants/detail.html'
@@ -70,4 +96,3 @@ class RestaurantDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-
