@@ -91,7 +91,7 @@ class CommentCreate(CreateView):
     template_name = 'restaurants/detail.html'
     
     def get_success_url(self):
-        return reverse('restaurant_detail', args=[str(self.object.restaurant_id)])
+        return reverse('detail', args=[str(self.object.restaurant.location), str(self.object.restaurant_id)])
 
 
     def form_valid(self, form):
@@ -113,4 +113,3 @@ class RestaurantDetail(DetailView):
     # def form_valid(self, form):
     # form.instance.user = self.request.user
     # form.instance.restaurant = Restaurant
-
