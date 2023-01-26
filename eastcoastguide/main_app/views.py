@@ -42,7 +42,8 @@ class RestaurantsIndex(ListView):
 class RestaurantCreate(CreateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
-    
+    success_url = '/'
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -50,17 +51,21 @@ class RestaurantCreate(CreateView):
 class RestaurantUpdate(UpdateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
-    success_url = '/'
+
+    def get_success_url(self):
+        return reverse('detail', args=[self.object.location, self.object.pk])
 
 class RestaurantDelete(DeleteView):
-    model = Restaurant 
-    sucess_url = '/'
+    model = Restaurant
+
+    def get_success_url(self):
+        return reverse('restaurants', args=[self.object.location])
+
     
 class CommentCreate(CreateView):
     model = Comment
     fields = ['comment', 'rating']
 
-#for the detail class in order to get it to work, the comments model will need to have the foreign key! I can always adjust accordingly once the models are created if there are any bugs :)
 class RestaurantDetail(DetailView):
     model = Restaurant
     template_name = 'restaurants/detail.html'
@@ -69,4 +74,3 @@ class RestaurantDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-
