@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render 
@@ -50,17 +50,33 @@ class RestaurantCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class RestaurantUpdate(LoginRequiredMixin, UserPassesTestMixin , UpdateView):
+class RestaurantUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Restaurant
     fields = ['name', 'location', 'website', 'address', 'price_range', 'type', 'hours', 'image']
+
+    def test_func(self):
+        restaurant = self.get_object()
+        return restaurant.user == self.request.user
+
+    def handle_no_permission(self):
+        return redirect(reverse('home'))
 
     def get_success_url(self):
         return reverse('detail', args=[self.object.location, self.object.pk])
 
 
-class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin ,DeleteView):
-    model = Restaurant
 
+class RestaurantDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Restaurant
+    raise_exception = False
+
+    def test_func(self):
+        restaurant = self.get_object()
+        return restaurant.user == self.request.user
+
+    def handle_no_permission(self):
+        return redirect(reverse('home'))
+    
     def get_success_url(self):
         return reverse('restaurants', args=[self.object.location])
 
