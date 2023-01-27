@@ -2,10 +2,20 @@
 {% block content %}
 
 <h1 class="center">Locations</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+              <a href="{% url 'restaurants' location='NY' %}" name="NY">
+                  <img src="https://iili.io/Hl7iEdJ.png">
+              </a>
+          </div>
+        <div class="col-6">
+              <a href="{% url 'restaurants' location='MA' %}" name="MA">
+                  <img src="https://iili.io/HcLjZcG.png">
+              </a>
+          </div>
+      </div>
+  </div>
 
-<div class="col s4 center">
-    <a href="{% url 'restaurants' location='NY' %}" name="NY" class="left"><img src="https://iili.io/Hl7iEdJ.png" ></a>
-    <a href="{% url 'restaurants' location='MA' %}" name="MA" class="right"><img src="https://iili.io/HcLjZcG.png" ></a>
-</div>
 
 {% endblock %}

@@ -3,30 +3,40 @@
 
 
 <div class="row">
-  <div class="col s6"><h1>Restaurants in {{location}} </h1></div>
+  <div class="col s6 center">
+    <h1>Restaurants in {{location}} </h1>
+  </div>
   <div class="col s6">
-    <a href="{% url 'restaurant_create' %}" class="right"><i class="medium material-icons grey-text text-darken-2 ">add_circle</i></a>
+    <a href="{% url 'restaurant_create' %}" class="right">
+      <i class="medium material-icons grey-text text-darken-2 left">add_circle</i>
+    </a>
   </div>
 </div>
 
-{% for restaurant in object_list %}
 <div class="row">
-  <a href="{% url 'detail' restaurant.location restaurant.id %}" class="grey-text text-darken-3">
-    <div class="col s4">
-        <div class="card">
-          <div class="card-image">
-                <img src="https://iili.io/HlkRM2j.png">
-                <span class="card-title grey darken-2">{{restaurant.name}}</span>
-            </div>
-            <div class="card-content grey-text text-darken-3">
-                <p>Location: {{restaurant.location}}</p>
-                <p>Cuisine: {{restaurant.type}}</p>
-                <p>Price Range: {{restaurant.price_range}}</p>
-            </div>
+{% for restaurant in object_list %}
+
+<div class="col s4">
+      <a href="{% url 'detail' restaurant.location restaurant.id %}" class="grey-text text-darken-3">
+      
+      <div class="card">
+        
+        <div class="card-image">
+          <img src="https://iili.io/HlkRM2j.png">
+          <span class="card-title grey darken-2">{{restaurant.name}}</span>
         </div>
+
+        <div class="card-content grey-text text-darken-3">
+          <p>Location: {{restaurant.location}}</p>
+          <p>Cuisine: {{restaurant.type}}</p>
+          <p>Price Range: {{restaurant.price_range}}</p>
+        </div>
+
+      </div>
+
+    </a>
     </div>
-  </a>
-</div>
 
 {% endfor %}
+</div>
 {% endblock %}

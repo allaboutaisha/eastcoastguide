@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +11,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'static/css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
 <body>
     <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper grey darken-3">
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo"><img src="https://iili.io/H0W5AzB.png" alt="logo"></a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo"><img src="https://iili.io/H0hnVsa.png"
+                                alt="logo"></a></li>
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
@@ -29,7 +34,7 @@
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
-                {% endif %}
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -38,8 +43,6 @@
         {% block content %}
         {% endblock %}
     </main>
-  	<!-- <footer class="page-footer grey darken-3">
-       <div class="right">All Rights Reserved, &copy; 2023 East Coast Guide &nbsp;</div>
-    </footer> -->
 </body>
+
 </html>
