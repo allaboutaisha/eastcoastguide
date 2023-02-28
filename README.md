@@ -1,46 +1,38 @@
-<img src="https://i.imgur.com/dX05KNo.png" alt="drawing" width="500"/>
-
 # East Coast Eats
+Four developers united their passion for food and travel to create East Coast Eats, a platform that showcases regional cuisines across the US. The team leveraged their programming expertise to launch an app where users can create, review, and manage restaurant listings. By offering the ability to update and delete their own listings, users can contribute to building a comprehensive directory of eateries. The developers take pride in making their favorite dining spots more accessible to fellow foodies.
+
+<img src="https://i.imgur.com/dX05KNo.png" alt="drawing" width="500"/>
 [East Coast Guide App Link](https://eastcoastguide.herokuapp.com/)
 
-Four developers came together with a shared passion for food and travel, along with a desire to share eats from the US regions they grew up. They pooled their talents and expertise in programming to create East Coast Eats. With the launch of the app, users can create and review listings in a directory while updating and deleting the listing they have created. The developers have the satisfaction of knowing they have made thier favorite places to eat more accessible for others to enjoy.
-
-## The users will be able to:
-
-A User will be able to view a directory of restaurants from two regions: Massachusetts and New York. They will have the ability to sign up for the site; at which point they can add a restaurant listing to the directory. While signed in they will have permisssions to delete and edit the lstings they create. 
-
-
-## Technologies used:
-
--Django Framework <br>
--Python <br>
--PostgreSQL <br>
--Github <br>
--CSS / Materialize <br>
--Heroku <br>
-
-
-## Trello Board
-
-https://trello.com/b/YJ8ny3Js/travel-app
-
-
-## Major Hurdles:
-
-- Dealing with merging errors in Github <br>
-- Errors with the database when making chnages to Models <br>
-- Github as a whole <br>
-
-
-## Ice Box Items:
-
-- Support for activites and attractions <br>
-- Expansion to all US States <br>
-- UI/Design Tweaks <br>
-- API Integrations <br>
-
-## Wireframes
+## Wireframes:
 ![Alt text](https://i.imgur.com/UVBVp48.png "Wireframes")
 
-## Entity Relationship Diagram
+## As a User:
+This project involved creating a directory of restaurants from two regions: Massachusetts and New York, with the ability for users to sign up and add listings to the directory. Once signed in, users had permissions to edit and delete their listings.
+
+
+## Technologies Used:
+- Django Framework
+- Python
+- PostgreSQL
+- CSS/Materialize
+- Github
+- Heroku
+
+## Major Hurdles:
+- Dealing with merging errors in Github
+- Errors with the database when making chnages to Models
+- Github as a whole
+
+
+## Icebox:
+- Adding activites and attractions to become an East Coast Guide
+- Including more states in the East Coast
+- Updating UI/Design
+- Implenting an API
+
+## Entity Relationship Diagram:
 ![Alt text](https://i.imgur.com/Ql1uMBy.png "ERD")
+
+## Trello Board:
+https://trello.com/b/YJ8ny3Js/travel-app
