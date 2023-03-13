@@ -7,23 +7,20 @@ Four developers united their passion for food and travel to create East Coast Ea
 ## Wireframes:
 ![Alt text](https://i.imgur.com/UVBVp48.png "Wireframes")
 
-## As a User:
-This project involved creating a directory of restaurants from two regions: Massachusetts and New York, with the ability for users to sign up and add listings to the directory. Once signed in, users had permissions to edit and delete their listings.
-
+## User Stories:
+This project involved creating a directory of restaurants from two regions: Massachusetts and New York, with the ability for users to sign up and add listings to the directory. Once signed in, users are able to edit and delete their listings.
 
 ## Technologies Used:
-- Django Framework
+- Django
 - Python
 - PostgreSQL
-- CSS/Materialize
-- Github
+- CSS
+- Materialize
 - Heroku
 
 ## Major Hurdles:
 - Dealing with merging errors in Github
-- Errors with the database when making chnages to Models
-- Github as a whole
-
+- Errors with the database when making changes to the models
 
 ## Icebox:
 - Adding activites and attractions to become an East Coast Guide
